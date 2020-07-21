@@ -3,7 +3,7 @@ class CreateServiceRequests < ActiveRecord::Migration[6.0]
     create_table :service_requests do |t|
       t.belongs_to :user, null: false, foreign_key: true
       t.belongs_to :provider, null: false, foreign_key: true
-      t.boolean :completed
+      t.boolean :completed, default: false
 
       t.timestamps
     end
