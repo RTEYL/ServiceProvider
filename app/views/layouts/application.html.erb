@@ -25,6 +25,11 @@
         <a class="nav-link" href="<%= signup_path %>">Sign Up</a>
       </li>
       <li class="nav-item">
+        <a class="nav-link" href="/">
+          <form action="/logout" method="post">Log Out</form>
+        </a>
+      </li>
+      <li class="nav-item">
         <a class="nav-link" href="<%= login_path %>">Log In</a>
       </li>
     </ul>
