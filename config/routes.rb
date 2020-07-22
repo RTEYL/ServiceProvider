@@ -7,10 +7,18 @@ Rails.application.routes.draw do
   get 'login', to: 'sessions#new'
   post 'login', to: 'sessions#create'
 
-  resources :sessions
-  resources :services
-  resources :users, only: [:show]
-  resources :providers
-  resources :service_requests
+  resources :services, only: [:index]
+  resources :users, only: [:show] do
+    resources :service_requests, only: [:index, :new, :edit]
+  end
+  resources :providers do
+    resources :services, only: [:new, :show, :edit]
+    resources :service_requests, only: [:index, :edit]
+  end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
+# providers/id/services/id
+# providers/id/services/new
+# users/id/service_requests
+# users/id/service_requests/new
+# providers/id/service_requests
