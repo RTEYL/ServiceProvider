@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_21_210717) do
+ActiveRecord::Schema.define(version: 2020_07_22_204529) do
 
   create_table "providers", force: :cascade do |t|
     t.string "first_name"
@@ -34,7 +34,7 @@ ActiveRecord::Schema.define(version: 2020_07_21_210717) do
 
   create_table "services", force: :cascade do |t|
     t.integer "provider_id", null: false
-    t.string "type"
+    t.string "service_type"
     t.text "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
