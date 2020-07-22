@@ -1,5 +1,10 @@
 class SessionsController < ApplicationController
 
+  def home
+    binding.pry
+    redirect_to current_user if current_user
+  end
+
   def create
     user = user_or_provider
     if user && user.authenticate(params[:user][:password])
