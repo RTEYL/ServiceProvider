@@ -1,12 +1,12 @@
 class ServicesController < ApplicationController
   before_action :redirect_if_not_logged_in
-
+  before_action :redirect_if_not_provider
+  skip_before_action :redirect_if_not_provider, only: [:index]
   def index
     @services = Service.all
   end
 
   def new
-    redirect_if_not_provider
     @provider = Provider.find_by_id(params[:provider_id])
     @service = Service.new
   end
@@ -17,6 +17,25 @@ class ServicesController < ApplicationController
       redirect_to provider_service_path(params[:provider_id], @service)
     else
       render :new
+    end
+  end
+
+  def edit
+    @service = Service.find_by_id(params[:id])
+    @provider = Provider.find_by_id(params[:provider_id])
+    redirect_to @provider if !@service
+  end
+
+  def update
+    @service = Service.find_by_id(params[:id])
+    @provider = @service.provider
+    if params[:commit] == 'Delete Service'
+      @provider.service = nil
+      @provider.save
+      redirect_to @provider
+    else
+      @service.update(service_params)
+      redirect_to @provider
     end
   end
 
