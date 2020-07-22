@@ -6,6 +6,7 @@ class ServicesController < ApplicationController
   end
 
   def new
+    redirect_if_not_provider
     @service = Service.new
   end
 

@@ -13,4 +13,8 @@ class ApplicationController < ActionController::Base
     redirect_to root_path if !logged_in?
   end
 
+  def redirect_if_not_provider
+    false if self.method_defined? :service_provider
+  end
+
 end
