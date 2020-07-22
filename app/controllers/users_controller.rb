@@ -8,7 +8,6 @@ class UsersController < ApplicationController
 
     @user = User.new(user_params)
     @user = Provider.new(user_params.except(:service_provider)) if @user.service_provider
-    binding.pry
     if @user.save
       session[:user_id] = @user.id
       redirect_to @user
