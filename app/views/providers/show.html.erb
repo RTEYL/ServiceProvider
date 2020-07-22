@@ -1,10 +1,15 @@
 <h1><%= @provider.last_name %>'s Services</h1>
 <br><br><br>
 
-<h3>My Service</h3>
-<p><%= @service.service_type %></p>
-<li><%= @service.description %></li>
-<br><br>
-<%= link_to 'edit or remove your service', edit_provider_service_path(@service)%>
-<br>
+<% if @service %>
+
+  <h3>My Service</h3>
+  <p><%= @service.service_type %></p>
+  <li><%= @service.description %></li>
+  <br><br>
+  <%= link_to 'edit or remove your service', edit_provider_service_path(@provider, @service)%>
+  <br>
+
+<% end %>
+
 <%= link_to 'Add your service here', new_provider_service_path(@provider) unless @provider.service%>
