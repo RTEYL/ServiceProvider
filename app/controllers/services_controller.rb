@@ -14,7 +14,7 @@ class ServicesController < ApplicationController
   def create
     @service = Service.new(service_params)
     if @service.save
-      redirect_to provider_service_path(params[:provider_id], @service)
+      redirect_to provider_path(params[:provider_id])
     else
       render :new
     end
@@ -30,13 +30,15 @@ class ServicesController < ApplicationController
     @service = Service.find_by_id(params[:id])
     @provider = @service.provider
     if params[:commit] == 'Delete Service'
-      @provider.service = nil
-      @provider.save
-      redirect_to @provider
+      destroy
     else
       @service.update(service_params)
-      redirect_to @provider
     end
+    redirect_to @provider
+  end
+
+  def destroy
+    Service.delete(params[:id])
   end
 
   private
