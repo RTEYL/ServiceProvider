@@ -1,0 +1,10 @@
+<% @provider.service_requests.each do |req| %>
+  <%= req.service.service_type %>
+  <br>
+  <%= form_for :service_request, url: edit_provider_service_request_path(req.id, @provider.id), method: 'post' do |f| %>
+    <%= f.label :completed %>
+    <%= f.check_box :completed %>
+    <br>
+    <%= f.submit 'Complete'%>
+  <% end %>
+<% end %>
