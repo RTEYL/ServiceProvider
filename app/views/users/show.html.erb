@@ -1,6 +1,13 @@
 <h1><%= @user.first_name %>'s Homepage</h1>
 
-<p>Current Requests</p>
+
+<% if @user.service_requests.any? %>
+  <p>Current Requests</p>
+<% else %>
+  <p>No Current Requests</p>
+<% end %>
+
+
 <% @user.service_requests.each do |req| %>
   <ul>
     <li><%= req.service.service_type %>
@@ -10,5 +17,3 @@
     </li>
   </ul>
 <% end %>
-
-<%= link_to 'Find a service', services_path%>
