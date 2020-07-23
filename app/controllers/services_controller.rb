@@ -3,7 +3,7 @@ class ServicesController < ApplicationController
   before_action :redirect_if_not_provider
   skip_before_action :redirect_if_not_provider, only: [:index]
   def index
-    @services = Service.all
+    @services = Service.search(params[:search])
   end
 
   def new
