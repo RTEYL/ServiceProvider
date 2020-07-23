@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_22_204529) do
+ActiveRecord::Schema.define(version: 2020_07_23_015939) do
 
   create_table "providers", force: :cascade do |t|
     t.string "first_name"
@@ -28,7 +28,9 @@ ActiveRecord::Schema.define(version: 2020_07_22_204529) do
     t.boolean "completed", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "service_id"
     t.index ["provider_id"], name: "index_service_requests_on_provider_id"
+    t.index ["service_id"], name: "index_service_requests_on_service_id"
     t.index ["user_id"], name: "index_service_requests_on_user_id"
   end
 
@@ -57,6 +59,7 @@ ActiveRecord::Schema.define(version: 2020_07_22_204529) do
   end
 
   add_foreign_key "service_requests", "providers"
+  add_foreign_key "service_requests", "services"
   add_foreign_key "service_requests", "users"
   add_foreign_key "services", "providers"
 end
