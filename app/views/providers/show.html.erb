@@ -9,10 +9,11 @@
   <br><br>
   <%= link_to 'Open Requests', provider_service_requests_path(@provider.id) %>
   <br><br>
-  <%= link_to 'edit or remove your service', edit_provider_service_path(@provider, @service)%>
+  <%= link_to 'Edit or remove your service', edit_provider_service_path(@provider, @service)%>
   <br>
 
+<% else %>
+
+  <%= link_to 'Add your service here', new_provider_service_path(@provider) unless @provider.service%>
 
 <% end %>
-
-<%= link_to 'Add your service here', new_provider_service_path(@provider) unless @provider.service%>
