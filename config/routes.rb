@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   post 'login', to: 'sessions#create'
 
   resources :services, only: [:index]
-  resources :users, only: [:show] do
+  resources :users, except: [:index] do
     resources :service_requests, only: [:show]
   end
   resources :providers do
