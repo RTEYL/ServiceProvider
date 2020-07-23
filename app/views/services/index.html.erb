@@ -1,0 +1,18 @@
+<h1>Services</h1>
+ <%= form_tag services_path, method: 'get'  do %>
+   <%= text_field_tag :search, params[:search]%>
+   <%= submit_tag "Search", name: nil  %>
+ <% end %>
+
+  <% @services.each do |service| %>
+    <ul>
+      <li><%= service.service_type %></li>
+      <ul>
+        <li>
+        <%= service.description %>
+
+        <%= link_to 'Send Request', user_service_requests_path(user_id: current_user.id, :service_request => {user_id: current_user.id, service_id: service.id, provider_id: service.provider.id}), :remote => true, :method => :post %>
+        </li>
+      </ul>
+    </ul>
+  <% end %>
