@@ -2,11 +2,12 @@ class ServiceRequestsController < ApplicationController
   before_action :redirect_if_not_logged_in
 
   def index
-    @provider = Provider.find_by_id(current_user)
+    @user = User.find_by_id(current_user)
   end
 
   def create
-    @service_request = ServiceRequest.new(service_request_params)
+    service = Service.find_by_id(params[:service_request][:service_id])
+    @service_request = service.user.service_requests.build(service_request_params)
     if @service_request.save
       redirect_to user_path(current_user)
     else
@@ -22,7 +23,7 @@ class ServiceRequestsController < ApplicationController
     else
       redirect_back fallback_location: root_path
     end
-    redirect_to provider_service_requests_path(current_user)
+    redirect_to user_service_requests_path(current_user)
   end
 
   def destroy
@@ -32,6 +33,6 @@ class ServiceRequestsController < ApplicationController
   private
 
   def service_request_params
-    params.require(:service_request).permit(:completed, :service_id, :provider_id, :user_id)
+    params.require(:service_request).permit(:completed, :service_id, :user_id)
   end
 end

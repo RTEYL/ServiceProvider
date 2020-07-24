@@ -1,10 +1,10 @@
-<% @provider.service_requests.each do |req| %>
+<% @user.service_requests.each do |req| %>
   <%= req.service.service_type %>
   <br>
-  <%= form_for :service_request, url: provider_service_request_path(req.id, provider_id: @provider.id), method: 'patch' do |f| %>
+  <%= form_for :service_request, url: user_service_request_path(req.id, user_id: @user.id), method: 'patch' do |f| %>
     <%= f.label :completed %>
     <%= f.check_box :completed %>
     <br>
     <%= f.submit 'Complete'%>
   <% end %>
-<% end %>
+<% end unless %>

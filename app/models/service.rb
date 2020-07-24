@@ -1,5 +1,5 @@
 class Service < ApplicationRecord
-  belongs_to :provider
+  belongs_to :user
 
   def self.search(search)
     if search

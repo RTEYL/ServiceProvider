@@ -10,37 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_23_015939) do
-
-  create_table "providers", force: :cascade do |t|
-    t.string "first_name"
-    t.string "last_name"
-    t.string "email"
-    t.integer "phone_number"
-    t.string "password_digest"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
+ActiveRecord::Schema.define(version: 2020_07_23_221558) do
 
   create_table "service_requests", force: :cascade do |t|
     t.integer "user_id", null: false
-    t.integer "provider_id", null: false
     t.boolean "completed", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "service_id"
-    t.index ["provider_id"], name: "index_service_requests_on_provider_id"
     t.index ["service_id"], name: "index_service_requests_on_service_id"
     t.index ["user_id"], name: "index_service_requests_on_user_id"
   end
 
   create_table "services", force: :cascade do |t|
-    t.integer "provider_id", null: false
+    t.integer "user_id", null: false
     t.string "service_type"
     t.text "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["provider_id"], name: "index_services_on_provider_id"
+    t.index ["user_id"], name: "index_services_on_user_id"
   end
 
   create_table "sessions", force: :cascade do |t|
@@ -58,8 +46,7 @@ ActiveRecord::Schema.define(version: 2020_07_23_015939) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  add_foreign_key "service_requests", "providers"
   add_foreign_key "service_requests", "services"
   add_foreign_key "service_requests", "users"
-  add_foreign_key "services", "providers"
+  add_foreign_key "services", "users"
 end

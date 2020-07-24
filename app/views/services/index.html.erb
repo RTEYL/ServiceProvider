@@ -5,13 +5,14 @@
  <% end %>
 
   <% @services.each do |service| %>
+  <% next if service.user == current_user %>
     <ul>
       <li><%= service.service_type %></li>
       <ul>
         <li>
         <%= service.description %>
 
-        <%= link_to 'Send Request', provider_service_requests_path(service.provider.id, :service_request => {user_id: current_user.id, service_id: service.id, provider_id: service.provider.id}), :remote => true, :method => :post %>
+        <%= link_to 'Send Request', user_service_requests_path(service.user.id, :service_request => {user_id: current_user.id, service_id: service.id}), :remote => true, :method => :post %>
         </li>
       </ul>
     </ul>

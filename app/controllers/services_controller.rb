@@ -7,14 +7,14 @@ class ServicesController < ApplicationController
   end
 
   def new
-    @provider = Provider.find_by_id(params[:provider_id])
+    @user = current_user
     @service = Service.new
   end
 
   def create
     @service = Service.new(service_params)
     if @service.save
-      redirect_to provider_path(params[:provider_id])
+      redirect_to current_user
     else
       render :new
     end
@@ -22,19 +22,19 @@ class ServicesController < ApplicationController
 
   def edit
     @service = Service.find_by_id(params[:id])
-    @provider = Provider.find_by_id(params[:provider_id])
-    redirect_to @provider if !@service
+    @user = current_user
+    redirect_to current_user if !@service
   end
 
   def update
     @service = Service.find_by_id(params[:id])
-    @provider = @service.provider
+    @user = @service.user
     if params[:commit] == 'Delete Service'
       destroy
     else
       @service.update(service_params)
     end
-    redirect_to @provider
+    redirect_to @user
   end
 
   def destroy
@@ -44,10 +44,10 @@ class ServicesController < ApplicationController
   private
 
   def service_params
-    if params[:provider_id] == params[:service][:provider_id]
-      params.require(:service).permit(:service_type, :description, :provider_id)
+    if params[:user_id] == params[:service][:user_id]
+      params.require(:service).permit(:service_type, :description, :user_id)
     else
-      redirect_to new_provider_service_path(params[:provider_id])
+      redirect_to new_user_service_path(params[:user_id])
     end
   end
 end

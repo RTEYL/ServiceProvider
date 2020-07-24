@@ -1,9 +1,9 @@
 <h1>Add a service by filling out the form below</h1>
 <br>
 
-<%= form_for @service, url: provider_services_path do |f| %>
+<%= form_for @service, url: user_services_path do |f| %>
 
-  <%= f.hidden_field :provider_id, value: @provider.id%>
+  <%= f.hidden_field :user_id, value: @user.id%>
   <%= f.label :service_type, "What type of service do you want to offer?" %>
   <br>
   <%= f.text_field :service_type %>

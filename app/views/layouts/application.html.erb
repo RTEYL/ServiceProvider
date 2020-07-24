@@ -25,13 +25,11 @@
         <li class="nav-item">
           <%= link_to "Logout", logout_path, method: 'delete', class: 'nav-link'%>
         </li>
-        <% if current_user.respond_to?(:service_provider) %>
-          <li class="nav-item">
-            <%= link_to 'Find a service', services_path, class: 'nav-link'%>
-          </li>
-        <% end %>
         <li class="nav-item">
-            <%= link_to 'Edit Account', send("edit_#{current_user.class.to_s.downcase}_path"), class: 'nav-link'%>
+          <%= link_to "Services", services_path, class: 'nav-link'%>
+        </li>
+        <li class="nav-item">
+            <%= link_to 'Edit Account', edit_user_path(current_user.id), class: 'nav-link'%>
         </li>
       <% else %>
         <li class="nav-item">

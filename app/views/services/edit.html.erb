@@ -1,8 +1,8 @@
 <h1>Edit form</h1>
 
-<%= form_for @service, url: provider_service_path do |f| %>
+<%= form_for @service, url: user_service_path do |f| %>
 
-  <%= f.hidden_field :provider_id, value: @provider.id%>
+  <%= f.hidden_field :user_id, value: @user.id%>
   <%= f.label :service_type, "Change service type" %>
   <br>
   <%= f.text_field :service_type %>

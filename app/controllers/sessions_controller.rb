@@ -5,7 +5,7 @@ class SessionsController < ApplicationController
   end
 
   def create
-    user = user_or_provider
+    user = User.find_by(email: params[:user][:email])
     if user && user.authenticate(params[:user][:password])
       session[:user_id] = user.id
       redirect_to user
@@ -17,18 +17,6 @@ class SessionsController < ApplicationController
   def destroy
     session.delete :user_id
     redirect_to root_path
-  end
-
-  private
-
-  def user_or_provider
-    if  user = User.find_by(email: params[:user][:email])
-      user
-    elsif provider = Provider.find_by(email: params[:user][:email])
-      provider
-    else
-      nil
-    end
   end
 
 end
