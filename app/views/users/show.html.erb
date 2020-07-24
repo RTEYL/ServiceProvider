@@ -1,6 +1,6 @@
 <h1><%= @user.first_name %>'s Homepage</h1>
 
-
+<%=binding.pry%>
 <% if @user.service_requests.any? %>
   <p>Current Requests</p>
 <% else %>
@@ -16,4 +16,7 @@
       </ul>
     </li>
   </ul>
+<% end %>
+<% if @user.service_provider %>
+  <%= render partial: 'provider_show'%>
 <% end %>

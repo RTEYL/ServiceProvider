@@ -1,0 +1,18 @@
+<% if @service %>
+
+  <h3>My Service</h3>
+  <p><%= @service.service_type %></p>
+  <li><%= @service.description %></li>
+  <br><br>
+  <%= link_to 'Open Requests', user_service_requests_path(current_user.id) %>
+  <br><br>
+  <%= link_to 'Edit or remove your service', edit_user_service_path(current_user, @service)%>
+  <br>
+
+<% else %>
+
+  <%= link_to 'Add your service here', new_user_service_path(current_user) unless current_user.service%>
+
+<% end %>
+
+<footer>Provider Account</footer>
