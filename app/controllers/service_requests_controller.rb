@@ -2,7 +2,7 @@ class ServiceRequestsController < ApplicationController
   before_action :redirect_if_not_logged_in
 
   def index
-    @user = User.find_by_id(current_user)
+    @user = User.find_by_id(current_user.id)
   end
 
   def create
