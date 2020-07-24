@@ -9,9 +9,6 @@ Rails.application.routes.draw do
 
   resources :services, only: [:index]
   resources :users, except: [:index] do
-    resources :service_requests, only: [:show]
-  end
-  resources :providers do
     resources :services, except: [:index]
     resources :service_requests
   end
