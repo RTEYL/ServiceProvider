@@ -6,8 +6,7 @@ class ServiceRequestsController < ApplicationController
   end
 
   def create
-    service = Service.find_by_id(params[:service_request][:service_id])
-    @service_request = service.user.service_requests.build(service_request_params)
+    @service_request = current_user.service_requests.build(service_request_params)
     if @service_request.save
       redirect_to user_path(current_user)
     else
@@ -33,6 +32,6 @@ class ServiceRequestsController < ApplicationController
   private
 
   def service_request_params
-    params.require(:service_request).permit(:completed, :service_id, :user_id)
+    params.require(:service_request).permit(:completed, :service_id, :provider_id, :creator_id)
   end
 end
