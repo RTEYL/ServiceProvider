@@ -12,7 +12,7 @@
         <li>
         <%= service.description %>
 
-        <%= link_to 'Send Request', user_service_requests_path(service.user.id, :service_request => {user_id: service.user.id, service_id: service.id}), :remote => true, :method => :post %>
+        <%= link_to 'Send Request', user_service_requests_path(service.user.id, :service_request => {provider_id: service.user.id, creator_id: current_user.id, service_id: service.id}), :remote => true, :method => :post %>
         </li>
       </ul>
     </ul>
