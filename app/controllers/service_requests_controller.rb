@@ -31,6 +31,6 @@ class ServiceRequestsController < ApplicationController
   private
 
   def service_request_params
-    params.require(:service_request).permit(:completed, :service_id, :provider_id, :creator_id)
+    params.require(:service_request).permit(:completed, :service_id, :user_id)
   end
 end
