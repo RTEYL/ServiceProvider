@@ -26,6 +26,7 @@
     <li><%= req.service.service_type %>
       <ul>
         <li>Completed by: <%=req.service.user.last_name%></li>
+        <li><%= link_to 'Leave a review', new_user_service_review_path(req.service.id, current_user.id) %></li>
       </ul>
     </li>
   </ul>
