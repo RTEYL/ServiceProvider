@@ -1,16 +1,13 @@
 class Service < ApplicationRecord
   has_many :service_requests
-  has_many :users, through: :service_requests
+  has_many :reviews
+	has_many :users, through: :reviews
   belongs_to :user
 
   def self.search(search)
     if search
       search = where(service_type: "#{search}")
-      if search.empty?
-        all
-      else
-        search
-      end
+      search.empty? ? all : search
     else
       all
     end

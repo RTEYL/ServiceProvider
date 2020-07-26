@@ -23,13 +23,13 @@
       </li>
       <% if logged_in? %>
         <li class="nav-item">
-          <%= link_to "Logout", logout_path, method: 'delete', class: 'nav-link'%>
-        </li>
-        <li class="nav-item">
           <%= link_to "Services", services_path, class: 'nav-link'%>
         </li>
         <li class="nav-item">
             <%= link_to 'Edit Account', edit_user_path(current_user.id), class: 'nav-link' if current_user%>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Logout", logout_path, method: 'delete', class: 'nav-link'%>
         </li>
       <% else %>
         <li class="nav-item">

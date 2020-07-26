@@ -10,7 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_25_233310) do
+ActiveRecord::Schema.define(version: 2020_07_26_211712) do
+
+  create_table "reviews", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "service_id", null: false
+    t.text "content"
+    t.text "comment"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["service_id"], name: "index_reviews_on_service_id"
+    t.index ["user_id"], name: "index_reviews_on_user_id"
+  end
 
   create_table "service_requests", force: :cascade do |t|
     t.integer "user_id", null: false
@@ -18,9 +29,6 @@ ActiveRecord::Schema.define(version: 2020_07_25_233310) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "service_id"
-    t.integer "creator_id"
-    t.integer "provider_id"
-    t.index ["creator_id"], name: "index_service_requests_on_creator_id"
     t.index ["service_id"], name: "index_service_requests_on_service_id"
     t.index ["user_id"], name: "index_service_requests_on_user_id"
   end
@@ -49,6 +57,8 @@ ActiveRecord::Schema.define(version: 2020_07_25_233310) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "reviews", "services"
+  add_foreign_key "reviews", "users"
   add_foreign_key "service_requests", "services"
   add_foreign_key "service_requests", "users"
 end
