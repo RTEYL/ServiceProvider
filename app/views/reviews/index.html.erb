@@ -1,0 +1,7 @@
+
+
+<% if @user.service_provider %>
+  <%= render partial: 'service_reviews'%>
+<% else %>
+  <%= render partial: 'user_reviews'%>
+<% end %>
