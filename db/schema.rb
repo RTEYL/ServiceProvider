@@ -17,6 +17,7 @@ ActiveRecord::Schema.define(version: 2020_07_26_211712) do
     t.integer "service_id", null: false
     t.text "content"
     t.text "comment"
+    t.integer "rating"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["service_id"], name: "index_reviews_on_service_id"
