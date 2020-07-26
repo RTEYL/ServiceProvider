@@ -9,10 +9,23 @@
 
 
 <% @user.service_requests.each do |req| %>
+<% next if req.completed %>
   <ul>
     <li><%= req.service.service_type %>
       <ul>
         <li>client: <%=req.service.user.last_name%></li>
+      </ul>
+    </li>
+  </ul>
+<% end %>
+
+<p>Previously Completed Services</p>
+<% @user.service_requests.take(10).each do |req| %>
+<% next if !req.completed %>
+  <ul>
+    <li><%= req.service.service_type %>
+      <ul>
+        <li>Completed by: <%=req.service.user.last_name%></li>
       </ul>
     </li>
   </ul>

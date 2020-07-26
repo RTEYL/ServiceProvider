@@ -18,7 +18,6 @@ class ServiceRequestsController < ApplicationController
     @service_request = ServiceRequest.find_by_id(params[:id])
     if @service_request
       @service_request.update(service_request_params)
-      destroy if @service_request.completed
     else
       redirect_back fallback_location: root_path
     end

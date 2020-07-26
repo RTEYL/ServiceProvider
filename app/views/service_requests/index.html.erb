@@ -1,4 +1,5 @@
 <% @user.service.service_requests.each do |req| %>
+  <% next if req.completed%>
   <%= req.service.service_type %>
   <br>
   <%= form_for :service_request, url: user_service_request_path(req.id, user_id: @user.id), method: 'patch' do |f| %>
