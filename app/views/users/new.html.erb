@@ -1,5 +1,7 @@
 <h1>Sign Up!</h1>
-
+<br>
+<%= link_to 'With Github', '/auth/github' %> OR
+<br><br>
 <%= form_for @user, url: '/signup' do |f| %>
 
 <%= f.label :first_name %>

@@ -1,5 +1,7 @@
 <h1>Login</h1>
 <br><br>
+<%= link_to 'With Github', '/auth/github' %> OR
+<br><br>
 <%= form_for :user do |f| %>
 <%= f.label :email %>
 <%= f.email_field :email %>
