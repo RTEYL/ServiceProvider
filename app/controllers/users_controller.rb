@@ -2,11 +2,11 @@ class UsersController < ApplicationController
   before_action :redirect_if_not_logged_in
   skip_before_action :redirect_if_not_logged_in, only: [:new, :create]
   def new
+    redirect_to user_path(current_user.id) if logged_in?
     @user = User.new
   end
 
   def create
-
     @user = User.new(user_params)
     if @user.save
       session[:user_id] = @user.id
