@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   match '/auth/:provider/callback', to: 'sessions#create', via: [:get, :post]
 
   resources :services, only: [:index] do
-    resources :reviews, only: [:index, :edit]
+    resources :reviews, except: [:show, :new, :create]
   end
   resources :users, except: [:index] do
     resources :service_requests

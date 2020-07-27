@@ -1,1 +1,19 @@
-service reviews
+<% if Service.highest_rated_services.include?(@service) %>
+  <h1>Congradulations on having a <strong>TOP RATED</strong> service</h1>
+<% end %>
+
+<h3><%= @service.service_type %></h3>
+
+<% @service.reviews.each do |rev| %>
+  <ul>
+    <li><%= rev.rating%></li>
+    <li><%= rev.user.fullname %> said: <%= rev.content%></li>
+    <li><%= rev.comment if rev.comment%></li>
+    <%= form_for rev, url: service_review_path(id: rev.id) do |f| %>
+      <%= f.label :comment %>
+      <br>
+      <%= f.text_field :comment %>
+      <%= rev.comment ? (f.submit 'Post Comment') : (f.submit 'Update Comment') %>
+    <% end %>
+  </ul>
+<% end %>
