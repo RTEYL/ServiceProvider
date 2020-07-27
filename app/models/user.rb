@@ -7,7 +7,7 @@ class User < ApplicationRecord
   validates :email, uniqueness: true
 
   def fullname
-    first_name + ' ' + last_name
+    "#{first_name}" + ' ' + "#{last_name}"
   end
 
 end
