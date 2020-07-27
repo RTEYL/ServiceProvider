@@ -13,7 +13,7 @@
   <ul>
     <li><%= req.service.service_type %>
       <ul>
-        <li>client: <%=req.service.user.last_name%></li>
+        <li>client: <%=req.service.user.fullname%></li>
       </ul>
     </li>
   </ul>
@@ -25,7 +25,7 @@
   <ul>
     <li><%= req.service.service_type %>
       <ul>
-        <li>Completed by: <%=req.service.user.last_name%></li>
+        <li>Completed by: <%=req.service.user.fullname%></li>
         <li><%= link_to 'Leave a review', new_service_review_path(req.service.id) %></li>
       </ul>
     </li>
