@@ -7,7 +7,7 @@
   <% @services.each do |service| %>
     <ul>
       <li>
-        <%= service.service_type %> : average rating <%= service.average_rating %> : <%= service.review_count %> review(s)
+        <%= service.service_type %> : average rating <%= service.average_rating %> : <%= service.review_count %> <%= link_to 'review(s)', service_reviews_path(service.id) %>
         <% if Service.highest_rated_services.include?(service) %>
           <strong>TOP RATED</strong>
         <% end %>

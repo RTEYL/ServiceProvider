@@ -7,8 +7,13 @@
 <% @service.reviews.each do |rev| %>
   <ul>
     <li><%= rev.rating%></li>
-    <li><%= rev.user.fullname %> said: <%= rev.content%></li>
-    <li><%= rev.comment if rev.comment%></li>
+    <%= rev.user.fullname %> said: <%= rev.content%>
+    <br>
+    <% if rev.comment %>
+      <%= @service.service_type %> Replied: <%= rev.comment%>
+    <% end %>
+  </ul>
+<% end %>
     <%= form_for rev, url: service_review_path(id: rev.id) do |f| %>
       <%= f.label :comment %>
       <br>

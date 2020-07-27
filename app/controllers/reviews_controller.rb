@@ -2,7 +2,7 @@ class ReviewsController < ApplicationController
   before_action :redirect_if_not_logged_in
 
   def index
-    @service = current_user.service
+    @service = Service.find_by_id(params[:service_id])
   end
 
   def new
