@@ -5,7 +5,6 @@
  <% end %>
 
   <% @services.each do |service| %>
-  <% next if service.user == current_user %>
     <ul>
       <li>
         <%= service.service_type %> : average rating <%= service.average_rating %> : <%= service.review_count %> review(s)
