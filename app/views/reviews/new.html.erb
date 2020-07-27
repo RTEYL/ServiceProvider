@@ -1,8 +1,12 @@
-<%= form_for :review do |f| %>
-<%= f. %>
-<%= f. %>
-<%= f. %>
-<%= f. %>
-<%= f. %>
-<%= f. %>
-<%= f. %>
+<%= @service.service_type %>
+<ul>
+  <li>Provided by: <%= @service.user.fullname %></li>
+</ul>
+
+<%= form_for [@service, @review] do |f| %>
+  <%= f.label 'Rating (1-5)' %>
+  <%= f.number_field :rating, in: 1...6 %>
+  <%= f.label :content %>
+  <%= f.text_field :content %>
+  <%= f.submit 'Submit Review'%>
+<% end %>
