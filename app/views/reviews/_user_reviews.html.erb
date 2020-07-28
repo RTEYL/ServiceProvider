@@ -1,12 +1,3 @@
 <h1><%= @service.service_type %>'s User Reviews</h1>
 <br><br>
-<% @service.reviews.each do |rev| %>
-  <ul>
-    <li><%= rev.rating%></li>
-    <%= rev.user.fullname %> said: <%= rev.content%>
-    <br>
-    <% if rev.comment %>
-      <%= @service.service_type %> Replied: <%= rev.comment%>
-    <% end %>
-  </ul>
-<% end %>
+<%= render partial: 'shared/review_display', locals: {@service: @service} %>

@@ -4,21 +4,4 @@
 
 <h3><%= @service.service_type %></h3>
 
-<% @service.reviews.each do |rev| %>
-  <ul>
-    <li><%= rev.rating%></li>
-    <%= rev.user.fullname %> said: <%= rev.content%>
-    <br>
-    <% if rev.comment %>
-      <%= @service.service_type %> Replied: <%= rev.comment%>
-    <% end %>
-  </ul>
-<% end %>
-    <%= form_for rev, url: service_review_path(id: rev.id) do |f| %>
-      <%= f.label :comment %>
-      <br>
-      <%= f.text_field :comment %>
-      <%= rev.comment ? (f.submit 'Post Comment') : (f.submit 'Update Comment') %>
-    <% end %>
-  </ul>
-<% end %>
+<%= render partial: 'shared/review_display', locals: {@service: @service} %>
