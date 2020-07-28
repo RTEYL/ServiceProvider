@@ -7,7 +7,6 @@ class SessionsController < ApplicationController
 
   def create
     auth_hash ? auth_loggin : user_loggin
-
   end
 
   def destroy
@@ -22,10 +21,9 @@ class SessionsController < ApplicationController
   end
 
   def auth_loggin
-      user = User.find_by(id: auth_hash[:uid], first_name: auth_hash[:info][:nickname])
-      user = User.create(id: auth_hash[:uid], first_name: auth_hash[:info][:nickname], password: SecureRandom.uuid) if !user
-      session[:user_id] = user.id
+    @user = User.where(uid: auth_hash[:uid], provider: auth_hash[:provider]).first_or_create
     if user
+      session[:user_id] = user.id
       redirect_to user_path(user)
     else
       redirect_to login_path
