@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   post 'login', to: 'sessions#create'
   match '/auth/:provider/callback', to: 'sessions#create', via: [:get, :post]
 
+  devise_for :users
+
   resources :services, only: [:index] do
     resources :reviews, except: [:show, :new, :create]
   end
