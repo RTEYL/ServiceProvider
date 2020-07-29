@@ -26,17 +26,17 @@
           <%= link_to "Services", services_path, class: 'nav-link'%>
         </li>
         <li class="nav-item">
-            <%= link_to 'Edit Account', edit_user_path(current_user.id), class: 'nav-link' if current_user%>
+            <%= link_to 'Edit Account', edit_user_registration_path, class: 'nav-link' if current_user%>
         </li>
         <li class="nav-item">
-          <%= link_to "Logout", logout_path, method: 'delete', class: 'nav-link'%>
+          <%= link_to "Logout", destroy_user_session_path, method: 'delete', class: 'nav-link'%>
         </li>
       <% else %>
         <li class="nav-item">
-          <a class="nav-link" href="<%= signup_path %>">Sign Up</a>
+          <a class="nav-link" href="<%= new_user_registration_path %>">Sign Up</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="<%= login_path %>">Log In</a>
+          <a class="nav-link" href="<%= new_user_session_path %>">Log In</a>
         </li>
       <% end %>
     </ul>

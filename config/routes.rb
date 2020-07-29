@@ -1,14 +1,7 @@
 Rails.application.routes.draw do
   root 'sessions#home'
 
-  get 'signup', to: 'users#new'
-  post 'signup', to: 'users#create'
-  delete 'logout', to: 'sessions#destroy'
-  get 'login', to: 'sessions#new'
-  post 'login', to: 'sessions#create'
-  match '/auth/:provider/callback', to: 'sessions#create', via: [:get, :post]
-
-  devise_for :users
+  devise_for :users, controllers: {omniauth_callbacks: 'omniauth'}
 
   resources :services, only: [:index] do
     resources :reviews, except: [:show, :new, :create]
