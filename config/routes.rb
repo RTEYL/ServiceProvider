@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'sessions#home'
+  root 'welcome#home'
 
   devise_for :users, controllers: {omniauth_callbacks: 'omniauth'}
 
