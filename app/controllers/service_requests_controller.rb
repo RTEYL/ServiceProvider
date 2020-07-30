@@ -9,8 +9,10 @@ class ServiceRequestsController < ApplicationController
     @service_request = current_user.service_requests.build(service_request_params)
     if @service_request.save
       redirect_to user_path(current_user)
+      flash[:notice] = "Request has been sent"
     else
       redirect_back fallback_location: root_path
+      flash[:notice] = "Request failed"
     end
   end
 
