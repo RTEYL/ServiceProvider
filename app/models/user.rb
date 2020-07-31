@@ -7,8 +7,18 @@ class User < ApplicationRecord
   has_many :reviews
 	has_many :services, through: :reviews
   has_one :service
-  validates :first_name, :last_name, presence: true, if: -> {provider.blank?}
-  validates :email, uniqueness: true, presence: true, allow_blank: true, if: -> {provider.blank?}
+
+  with_options if: :validations_required? do |user|
+    has_secure_password validations: false
+    user.validates_confirmation_of :password
+    user.validates :first_name, presence: true
+    user.validates :last_name, presence: true
+    user.validates :email, uniqueness: true, presence: true
+  end
+
+  def validations_required?
+    true if provider.blank?
+  end
 
   def fullname
     "#{first_name}" + ' ' + "#{last_name}"
