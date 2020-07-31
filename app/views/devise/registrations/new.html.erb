@@ -21,6 +21,13 @@
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
 
+  <% if !resource.service_provider %>
+    <div class="field">
+      <%= f.label :service_provider, "Check this box to list your own Service?" %>
+      <%= f.check_box :service_provider %>
+    </div>
+  <% end %>
+
   <div class="actions">
     <%= f.submit "Sign up" %>
   </div>

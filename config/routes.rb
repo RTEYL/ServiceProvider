@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root 'welcome#home'
 
-  devise_for :users, controllers: {omniauth_callbacks: 'omniauth'}
+  devise_for :users, controllers: {omniauth_callbacks: 'omniauth', :registrations => 'registration_override'}
 
   resources :services, only: [:index] do
     resources :reviews, except: [:show, :new, :create]
