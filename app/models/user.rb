@@ -9,8 +9,6 @@ class User < ApplicationRecord
   has_one :service
 
   with_options if: :validations_required? do |user|
-    has_secure_password validations: false
-    user.validates_confirmation_of :password
     user.validates :first_name, presence: true
     user.validates :last_name, presence: true
     user.validates :email, uniqueness: true, presence: true
