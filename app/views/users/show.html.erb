@@ -1,35 +1,35 @@
 <h1><%= @user.first_name %>'s Homepage</h1>
 
 
+
+
 <% if @user.service_requests.any? %>
   <p>Current Requests</p>
+  <% @user.service_requests.each do |req| %>
+  <% next if req.completed %>
+    <ul>
+      <li><%= req.service.service_type %>
+        <ul>
+          <li>Provider: <%=req.service.user.fullname%></li>
+        </ul>
+      </li>
+    </ul>
+  <% end %>
+
+  <p>Previously Completed Services</p>
+  <% @user.service_requests.take(10).each do |req| %>
+  <% next if !req.completed %>
+    <ul>
+      <li><%= req.service.service_type %>
+        <ul>
+          <li>Completed by: <%=req.service.user.fullname%></li>
+          <li><%= link_to 'Leave a review', new_service_review_path(req.service.id) %></li>
+        </ul>
+      </li>
+    </ul>
+  <% end %>
 <% else %>
   <p>No Current Requests</p>
-<% end %>
-
-
-<% @user.service_requests.each do |req| %>
-<% next if req.completed %>
-  <ul>
-    <li><%= req.service.service_type %>
-      <ul>
-        <li>client: <%=req.service.user.fullname%></li>
-      </ul>
-    </li>
-  </ul>
-<% end %>
-
-<p>Previously Completed Services</p>
-<% @user.service_requests.take(10).each do |req| %>
-<% next if !req.completed %>
-  <ul>
-    <li><%= req.service.service_type %>
-      <ul>
-        <li>Completed by: <%=req.service.user.fullname%></li>
-        <li><%= link_to 'Leave a review', new_service_review_path(req.service.id) %></li>
-      </ul>
-    </li>
-  </ul>
 <% end %>
 <% if @user.service_provider %>
   <%= render partial: 'provider_show'%>

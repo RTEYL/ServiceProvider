@@ -3,6 +3,7 @@ class ServiceRequestsController < ApplicationController
 
   def index
     @user = User.find_by_id(current_user.id)
+    @service_requests = @user.service.service_requests
   end
 
   def create
@@ -22,6 +23,7 @@ class ServiceRequestsController < ApplicationController
       @service_request.update(service_request_params)
     else
       redirect_back fallback_location: root_path
+      flash[:notice] = "Request Completed"
     end
     redirect_to user_service_requests_path(current_user)
   end

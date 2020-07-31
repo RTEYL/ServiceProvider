@@ -4,7 +4,6 @@
 </ul>
 
 <%= form_for [@service, @review] do |f| %>
-  <%= render partial: 'shared/errors_partial', locals:{f: f} %>
   <%= f.label 'Rating (1-5)' %>
   <%= f.number_field :rating, in: 1...6 %>
   <%= f.label :content %>

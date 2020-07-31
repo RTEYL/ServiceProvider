@@ -16,6 +16,7 @@ class ReviewsController < ApplicationController
     if @review.save
       redirect_to user_path(current_user)
     else
+    flash[:alert] = @review.errors.full_messages.join(", ")
      render :new
     end
   end

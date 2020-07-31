@@ -18,6 +18,7 @@ class UsersController < ApplicationController
 
   def show
     @user = current_user
+    @service = @user.service if @user.service
   end
 
   def edit
