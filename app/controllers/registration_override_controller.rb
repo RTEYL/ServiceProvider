@@ -1,10 +1,5 @@
 class RegistrationOverrideController < Devise::RegistrationsController
 
-  def update
-    super do
-      pry
-    end
-  end
   protected
 
   def update_resource(resource, params)
