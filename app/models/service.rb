@@ -16,11 +16,11 @@ class Service < ApplicationRecord
   end
 
   def self.highest_rated_services
-    all.order(:average_rating)
+    all.order(:average_rating).limit(5)
   end
 
   def average_rating
-    reviews.sum(:rating) / reviews.length
+    reviews.sum(:rating) / reviews.length unless reviews.length == 0
   end
 
   def review_count
