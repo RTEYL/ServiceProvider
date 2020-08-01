@@ -15,7 +15,7 @@ class ReviewsController < ApplicationController
     @review = @service.reviews.build(review_params)
     if @review.save
       redirect_to user_path(current_user)
-      flash[:notice] = "Thank you for reviewing #{@service.provider.fullname}'s service'"
+      flash[:notice] = "Thank you for reviewing #{@service.user.fullname}'s service'"
     else
       custom_error_messages("alert", @review)
       render :new

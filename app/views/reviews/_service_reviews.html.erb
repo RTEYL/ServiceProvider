@@ -1,4 +1,4 @@
-<% if Service.highest_rated_services.include?(@service) %>
+<% if Service.highest_rated_services.include?(@service) && @service.average_rating <= 4 %>
   <h1>Congradulations on having a <strong>TOP RATED</strong> service</h1>
 <% end %>
 
