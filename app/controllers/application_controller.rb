@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
-  helper_method :current_user, :logged_in?, :custom_error_messages
+  helper_method :current_user, :logged_in?
 
   def redirect_if_not_logged_in
     if !user_signed_in?
