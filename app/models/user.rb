@@ -3,10 +3,10 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :omniauthable, omniauth_providers: [:github]
-  has_many :service_requests
-  has_many :reviews
-	has_many :services, through: :reviews
-  has_one :service
+  has_many :service_requests, dependent: :delete_all
+  has_many :reviews, dependent: :delete_all
+	has_many :services, through: :reviews, dependent: :delete_all
+  has_one :service, dependent: :delete
 
   with_options if: :validations_required? do |user|
     user.validates :first_name, presence: true
