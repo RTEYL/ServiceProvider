@@ -11,7 +11,7 @@ class OmniauthController < Devise::SessionsController
   end
 
   def failure
-    flash[:danger] = 'Ther was a problem signing you in with Github, please try again'
+    flash[:danger] = 'There was a problem signing you in with Github, please try again'
     redirect_to new_user_registration_url
   end
 

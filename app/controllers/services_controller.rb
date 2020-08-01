@@ -13,9 +13,12 @@ class ServicesController < ApplicationController
 
   def create
     @service = Service.new(service_params)
+    @user = current_user
     if @service.save
       redirect_to current_user
+      flash[:notice] = "Your service is now listed"
     else
+      custom_error_messages('alert', @service)
       render :new
     end
   end
@@ -31,10 +34,14 @@ class ServicesController < ApplicationController
     @user = @service.user
     if params[:commit] == 'Delete Service'
       destroy
+      flash[:notice] = "Your service has been removed"
+    elsif @service.update(service_params)
+      flash[:notice] = "Your service is now updated"
+      redirect_to @user
     else
-      @service.update(service_params)
+      custom_error_messages("alert", @service)
+      redirect_to @user
     end
-    redirect_to @user
   end
 
   def destroy

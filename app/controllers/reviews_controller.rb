@@ -15,9 +15,10 @@ class ReviewsController < ApplicationController
     @review = @service.reviews.build(review_params)
     if @review.save
       redirect_to user_path(current_user)
+      flash[:notice] = "Thank you for reviewing #{@service.provider.fullname}'s service'"
     else
-    flash[:alert] = @review.errors.full_messages.join(", ")
-     render :new
+      custom_error_messages("alert", @review)
+      render :new
     end
   end
 
@@ -27,12 +28,9 @@ class ReviewsController < ApplicationController
     if @review.save
       redirect_to service_reviews_path(params[:service_id])
     else
+      custom_error_messages("alert", @review)
       redirect_to service_reviews_path(params[:service_id])
     end
-  end
-
-  def destroy
-
   end
 
   private

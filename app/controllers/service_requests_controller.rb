@@ -25,11 +25,8 @@ class ServiceRequestsController < ApplicationController
       redirect_back fallback_location: root_path
       flash[:notice] = "Request Completed"
     end
+    custom_error_messages("alert", @service_request)
     redirect_to user_service_requests_path(current_user)
-  end
-
-  def destroy
-    ServiceRequest.delete(params[:id])
   end
 
   private

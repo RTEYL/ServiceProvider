@@ -2,6 +2,10 @@ class RegistrationOverrideController < Devise::RegistrationsController
 
   protected
 
+  def after_sign_in_path_for(resource)
+    user_path(current_user.id)
+  end
+
   def update_resource(resource, params)
     if !resource.provider.blank?
       resource.update_without_password(params)

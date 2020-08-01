@@ -2,7 +2,6 @@
 <br>
 
 <%= form_for @service, url: user_services_path do |f| %>
-  <%= render partial: 'shared/errors_partial', locals:{f: f} %>
   <%= f.hidden_field :user_id, value: @user.id%>
   <%= f.label :service_type, "What type of service do you want to offer?" %>
   <br>
