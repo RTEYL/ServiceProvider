@@ -34,7 +34,6 @@ class ServicesController < ApplicationController
     @user = @service.user
     if params[:commit] == 'Delete Service'
       destroy
-      flash[:notice] = "Your service has been removed"
     elsif @service.update(service_params)
       flash[:notice] = "Your service is now updated"
       redirect_to @user
@@ -46,6 +45,8 @@ class ServicesController < ApplicationController
 
   def destroy
     Service.delete(params[:id])
+    flash[:notice] = "Your service has been removed"
+    redirect_back fallback_location: root_path
   end
 
   private
