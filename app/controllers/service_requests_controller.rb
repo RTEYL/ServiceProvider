@@ -21,12 +21,12 @@ class ServiceRequestsController < ApplicationController
     @service_request = ServiceRequest.find_by_id(params[:id])
     if @service_request
       @service_request.update(service_request_params)
-    else
       redirect_back fallback_location: root_path
       flash[:notice] = "Request Completed"
+    else
+      custom_error_messages("alert", @service_request)
+      flash[:notice] = "Request failed to complete"
     end
-    custom_error_messages("alert", @service_request)
-    redirect_to user_service_requests_path(current_user)
   end
 
   private

@@ -27,4 +27,8 @@ class Service < ApplicationRecord
     reviews.count
   end
 
+  def open_requests_count
+    service_requests.where(:completed => false).count
+  end
+
 end

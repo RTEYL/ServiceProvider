@@ -4,9 +4,9 @@
   <p><%= @service.service_type %></p>
   <li><%= @service.description %></li>
   <br><br>
-  <%= link_to 'Open Requests', user_service_requests_path(current_user.id) %>
+  <%= link_to 'Open Requests', user_service_requests_path(current_user.id) %> : <%= @service.open_requests_count %>
   <br><br>
-  <%= link_to 'Reviews', service_reviews_path(@service.id) %>
+  <%= link_to 'Reviews', service_reviews_path(@service.id) %> : <%= @service.review_count %>
   <br><br>
   <%= link_to 'Edit or remove your service', edit_service_path(@service.id)%>
   <br>
