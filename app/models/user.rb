@@ -5,7 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable, :omniauthable, omniauth_providers: [:github]
   has_many :service_requests, dependent: :delete_all
   has_many :reviews, dependent: :delete_all
-	has_many :services, through: :reviews, dependent: :delete_all
+	has_many :services, through: :reviews
   has_one :service, dependent: :delete
 
   with_options if: :validations_required? do |user|
